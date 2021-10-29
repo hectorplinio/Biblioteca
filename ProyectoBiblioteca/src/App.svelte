@@ -82,6 +82,9 @@
 </script>
 
 <main>
+	<div class="cabecera">
+		<p>Cabecera</p>
+	</div>
 	<div class="container">
 		<div class="formulario">
 			<!-- on:evento cuando se envie el formulario-->
@@ -139,7 +142,7 @@
 					<option value="Historica">Historica</option>
 					<option value="Belica">Belica</option>
 				</select><br>
-				<hr class="my-2" />
+				<hr class="" />
 				<!-- Este boton debe de ser dual, si se añade o se modifica un elemento cambiara tanto el contenido como la función a la que va a llamar o a ejecutar...-->
 				{#if editar}
 					<button class="" value="Editar">

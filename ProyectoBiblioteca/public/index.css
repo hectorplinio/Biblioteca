@@ -765,19 +765,24 @@ select {
 		max-width: 1536px;
 	}
 }
+.cabecera {
+	height: 6rem;
+	width: 100%;
+	--tw-bg-opacity: 1;
+	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
 .libros {
 	display: grid;
+	width: 80%;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	flex-direction: row;
-	--tw-bg-opacity: 1;
-	background-color: rgba(252, 211, 77, var(--tw-bg-opacity));
 	--tw-bg-opacity: 1;
 	background-color: rgba(252, 211, 77, var(--tw-bg-opacity));
 }
 .container {
 	display: flex;
+	width: 100%;
 }
-.my-2 {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
+.formulario {
+	width: 20%;
 }
