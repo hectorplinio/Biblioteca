@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    
+    .cabecera{
+        @apply py-8 px-4 bg-indigo-100 border border-indigo-500 shadow-lg;
+    }
+    
+    .container{
+        @apply flex w-full;
+    }
+    .formulario{
+        @apply w-60;
+    }
+    .portadas{
+        @apply h-80 w-72;
+    }
+ 
+}
