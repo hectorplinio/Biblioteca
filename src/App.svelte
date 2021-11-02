@@ -1,5 +1,5 @@
 <script>
-	
+	import { toast } from '@zerodevx/svelte-toast'
 	import { db } from "./firebase";
 	import {
 		collection,
@@ -158,6 +158,7 @@
 			<div class="libros">
 				{#each libros as p, i}
 					<!-- Elemento -->
+					<div class="libro">
 							{#if p.Imagen}
 								<img
 									class="portadas"
@@ -187,10 +188,10 @@
 							<p class="">
 								Precio Venta: {p.Precio}
 							</p>
-								<button class="editar"on:click={editarElemento(p)} value="Editar">P</button>
-								<button class="eliminar" on:click={eliminarElemento(p.id)} value="Eliminar"></button>
-							
-					<!-- Fin elemento -->
+								<button class="editar" on:click={editarElemento(p)} value="Editar" name="Editar">Editar</button>
+								<button class="eliminar" on:click={eliminarElemento(p.id)} value="Eliminar" name="Eliminar">Eliminar</button>
+								<button on:click={() => toast.push('Hello world!')}>EMIT TOAST</button>
+					</div>
 				{/each}
 			</div>
 	</div>

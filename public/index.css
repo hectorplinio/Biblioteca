@@ -797,3 +797,24 @@ select {
 	height: 20rem;
 	width: 18rem;
 }
+.libros {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.libro {
+	padding: 2rem;
+}
+.editar {
+	margin: 0.25rem;
+	border-radius: 0.25rem;
+	--tw-bg-opacity: 1;
+	background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+	padding: 0.5rem;
+}
+.eliminar {
+	margin: 0.25rem;
+	border-radius: 0.25rem;
+	--tw-bg-opacity: 1;
+	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
+	padding: 0.5rem;
+}
