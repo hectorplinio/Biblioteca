@@ -1,5 +1,6 @@
 <script>
-	import { toast } from '@zerodevx/svelte-toast'
+	import Modal from "./Modal.svelte";
+	let modal;
 	import { db } from "./firebase";
 	import {
 		collection,
@@ -19,6 +20,12 @@
 		Npaginas: "",
 		Precio: "",
 	};
+	let generos = [];
+
+	let genero = "";
+
+		
+	
 	let libros = [];
 
 	const loadData = async () => {
@@ -31,6 +38,16 @@
 		console.log(libros);
 	};
 	loadData();
+	const loadDataGeneros = async () => {
+		const querySnapshot = await getDocs(collection(db, "generos"));
+		let gener = [];
+		querySnapshot.forEach((doc) => {
+			gener.push({ ...doc.data(), id: doc.id });
+		});
+		generos = [...gener];
+		console.log(generos);
+	};
+	loadDataGeneros();
 
 	let editar = false;
 
@@ -52,11 +69,19 @@
 		await loadData();
 		vaciarFormulario();
 	};
+	const añadirElementoGenero = async () => {
+		await addDoc(collection(db, "generos"), {genero:genero});
+		await loadDataGeneros();
+	};
 
 	const guardarElemento = async () => {
 		await updateDoc(doc(db, "libros", libro.id), libro);
 		await loadData();
 		vaciarFormulario();
+	};
+	const guardarElementoGenero = async () => {
+		await updateDoc(doc(db, "generos", genero.id), );
+		await loadDataGeneros();
 	};
 
 	const editarElemento = (p) => {
@@ -79,9 +104,16 @@
 			añadirElemento();
 		}
 	};
+	const onSubmitHandlerGenero = () => {
+		console.log(genero);
+		añadirElementoGenero();
+		modal.hide()
+		
+	};
 </script>
 
 <main>
+	
 	<div class="cabecera">
 		<p>Cabecera</p>
 	</div>
@@ -134,14 +166,20 @@
 				/><br>
 				<label for="Genero">Genero<br></label>
 				<select bind:value={libro.Genero} id="Genero">
-					<option value="Novela">Novela</option>
-					<option value="Drama">Drama</option>
-					<option value="Romantica">Romantica</option>
-					<option value="Policiaca">Policiaca</option>
-					<option value="Juvenil">Juvenil</option>
-					<option value="Historica">Historica</option>
-					<option value="Belica">Belica</option>
-				</select><br>
+					{#each generos as g}
+						<option value='{g.genero}'>{g.genero}</option>
+					{/each}
+				</select>
+				<input type="button" on:click={() => modal.show()} value="" style="background-">
+				<Modal bind:this={modal}>
+					<form on:submit|preventDefault={onSubmitHandlerGenero}>
+						<h2>Añadir un nuevo género</h2>
+						<input type="text" name="genero" id="genero" bind:value={genero}>
+						<button value="Añadir">Añadir</button>	
+					</form>
+					<br><button on:click={() => modal.hide()}>Close</button>
+					</Modal>
+				
 				<hr class="" />
 				<!-- Este boton debe de ser dual, si se añade o se modifica un elemento cambiara tanto el contenido como la función a la que va a llamar o a ejecutar...-->
 				{#if editar}
@@ -190,7 +228,6 @@
 							</p>
 								<button class="editar" on:click={editarElemento(p)} value="Editar" name="Editar">Editar</button>
 								<button class="eliminar" on:click={eliminarElemento(p.id)} value="Eliminar" name="Eliminar">Eliminar</button>
-								<button on:click={() => toast.push('Hello world!')}>EMIT TOAST</button>
 					</div>
 				{/each}
 			</div>
