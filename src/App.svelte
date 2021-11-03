@@ -170,7 +170,7 @@
 						<option value='{g.genero}'>{g.genero}</option>
 					{/each}
 				</select>
-				<input type="button" on:click={() => modal.show()} value="" style="background-">
+				<input type="button" on:click={() => modal.show()} value="Agregar" >
 				<Modal bind:this={modal}>
 					<form on:submit|preventDefault={onSubmitHandlerGenero}>
 						<h2>Añadir un nuevo género</h2>
