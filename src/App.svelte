@@ -1,6 +1,8 @@
 <script>
 	import Modal from "./Modal.svelte";
 	let modal;
+	import { SvelteToast } from '@zerodevx/svelte-toast';
+	import { toast } from '@zerodevx/svelte-toast';
 	import { db } from "./firebase";
 	import {
 		collection,
@@ -23,8 +25,6 @@
 	let generos = [];
 
 	let genero = "";
-
-		
 	
 	let libros = [];
 
@@ -87,12 +87,30 @@
 	const editarElemento = (p) => {
 		libro = Object.assign({}, p);
 		editar = true;
+		
 	};
 
 	const eliminarElemento = async (id) => {
 		await deleteDoc(doc(db, "libros", id));
 		await loadData();
 	};
+	const success = () =>{
+		toast.push('Genero añadido correctamente!', {
+		theme: {
+			'--toastBackground': '#48BB78',
+			'--toastBarBackground': '#2F855A'
+		}
+		})
+	}
+	const editElement = () =>{
+		toast.push('Elemento editado correctamente!', {
+		theme: {
+			'--toastBackground': '#FFFACD',
+			'--toastBarBackground': '#F0E68C',
+			'--toastColor': 'red'
+		}
+		})
+	}
 
 	// Handler principal
 	const onSubmitHandler = (e) => {
@@ -100,6 +118,7 @@
 			// Guardamos
 			console.log("Guardando...");
 			guardarElemento();
+			editElement();
 		} else {
 			añadirElemento();
 		}
@@ -107,15 +126,18 @@
 	const onSubmitHandlerGenero = () => {
 		console.log(genero);
 		añadirElementoGenero();
+		success();
 		modal.hide()
 		
 	};
 </script>
 
 <main>
-	
+	<SvelteToast  />
 	<div class="cabecera">
-		<p>Cabecera</p>
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<img src="https://mcgtn.org/storage/logos/library-logo.png" class="icono">
+		<div class="titulo"><h1>Bibliomanía</h1></div>
 	</div>
 	<div class="container">
 		<div class="formulario">
@@ -170,7 +192,7 @@
 						<option value='{g.genero}'>{g.genero}</option>
 					{/each}
 				</select>
-				<input type="button" on:click={() => modal.show()} value="Agregar" >
+				<input type="button" on:click={() => modal.show()} value="Agregar"class="agregar"  >
 				<Modal bind:this={modal}>
 					<form on:submit|preventDefault={onSubmitHandlerGenero}>
 						<h2>Añadir un nuevo género</h2>

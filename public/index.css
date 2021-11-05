@@ -774,6 +774,7 @@ select {
 	}
 }
 .cabecera {
+	display: flex;
 	border-width: 1px;
 	--tw-border-opacity: 1;
 	border-color: rgba(99, 102, 241, var(--tw-border-opacity));
@@ -785,6 +786,15 @@ select {
 	padding-right: 1rem;
 	--tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.icono {
+	width: 3rem;
+}
+.titulo {
+	margin: auto;
+	font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	font-size: 3rem;
+	line-height: 1;
 }
 .container {
 	display: flex;
@@ -817,4 +827,8 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
 	padding: 0.5rem;
+}
+.agregar {
+	--tw-bg-opacity: 1;
+	background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
 }

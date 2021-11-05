@@ -5,9 +5,14 @@
 @layer components {
     
     .cabecera{
-        @apply py-8 px-4 bg-indigo-100 border border-indigo-500 shadow-lg;
+        @apply py-8 px-4 bg-indigo-100 border border-indigo-500 shadow-lg flex;
     }
-    
+    .icono{
+        @apply w-12;
+    }
+    .titulo{
+        @apply m-auto text-5xl font-serif;
+    }
     .container{
         @apply flex w-full;
     }
@@ -28,6 +33,9 @@
     }
     .eliminar{
         @apply bg-red-700 rounded p-2 m-1;
+    }
+    .agregar{
+        @apply bg-blue-400;
     }
  
  
