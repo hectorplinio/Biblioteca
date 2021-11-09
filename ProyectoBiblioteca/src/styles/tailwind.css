@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    
+    .cabecera{
+        @apply w-full h-24 bg-blue-500;
+    }
+    .libros{
+        @apply bg-yellow-300 flex-row grid grid-cols-3 w-4/5;
+
+    }
+    .container{
+        @apply flex w-full;
+    }
+    .formulario{
+        @apply w-1/5;
+    }
+    
+}
