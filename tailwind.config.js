@@ -20,4 +20,11 @@ module.exports = {
     ],
     enabled: production // disable purge in dev
   },
+  theme: {
+    extend: {
+      backgroundImage: {
+       'agregar': "url('./images/suma.png')",
+      }
+    }
+  }
 };

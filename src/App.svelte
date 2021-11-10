@@ -1,6 +1,8 @@
 <script>
 	import Modal from "./Modal.svelte";
 	let modal;
+	import { SvelteToast } from '@zerodevx/svelte-toast';
+	import { toast } from '@zerodevx/svelte-toast';
 	import { db } from "./firebase";
 	import {
 		collection,
@@ -23,8 +25,6 @@
 	let generos = [];
 
 	let genero = "";
-
-		
 	
 	let libros = [];
 
@@ -35,7 +35,6 @@
 			libs.push({ ...doc.data(), id: doc.id });
 		});
 		libros = [...libs];
-		console.log(libros);
 	};
 	loadData();
 	const loadDataGeneros = async () => {
@@ -45,7 +44,6 @@
 			gener.push({ ...doc.data(), id: doc.id });
 		});
 		generos = [...gener];
-		console.log(generos);
 	};
 	loadDataGeneros();
 
@@ -67,45 +65,85 @@
 	const añadirElemento = async () => {
 		await addDoc(collection(db, "libros"), libro);
 		await loadData();
+		console.log("libro")
+		addLibro();
 		vaciarFormulario();
 	};
 	const añadirElementoGenero = async () => {
 		await addDoc(collection(db, "generos"), {genero:genero});
 		await loadDataGeneros();
+		console.log("genero")
+		success();
 	};
 
 	const guardarElemento = async () => {
 		await updateDoc(doc(db, "libros", libro.id), libro);
 		await loadData();
+		console.log("guardalibro")
 		vaciarFormulario();
 	};
-	const guardarElementoGenero = async () => {
-		await updateDoc(doc(db, "generos", genero.id), );
-		await loadDataGeneros();
-	};
+	
 
 	const editarElemento = (p) => {
 		libro = Object.assign({}, p);
 		editar = true;
+		console.log("editalibro")
+		
+		
 	};
 
 	const eliminarElemento = async (id) => {
 		await deleteDoc(doc(db, "libros", id));
 		await loadData();
+		console.log("elimina")
+		deleteLibro();
 	};
+	const success = () =>{
+		toast.push('Genero añadido correctamente!', {
+		theme: {
+			'--toastBackground': '#48BB78',
+			'--toastBarBackground': '#2F855A'
+		}
+		})
+	}
+	const editElement = () =>{
+		toast.push('Libro editado correctamente!', {
+		theme: {
+			'--toastBackground': '#FFFACD',
+			'--toastBarBackground': '#F0E68C',
+			'--toastColor': 'red'
+		}
+		})
+	}
+	const addLibro = () =>{
+		toast.push('Libro añadido correctamente!', {
+		theme: {
+			'--toastBackground': '#0037ff',
+			'--toastBarBackground': '#c2c6ed',
+			'--toastColor': 'white'
+		}
+		})
+	}
+	const deleteLibro = () =>{
+		toast.push('Libro eliminado correctamente!', {
+		theme: {
+			'--toastBackground': '#ff0000',
+			'--toastBarBackground': '#b70000',
+			'--toastColor': 'white'
+		}
+		})
+	}
 
 	// Handler principal
 	const onSubmitHandler = (e) => {
 		if (editar) {
-			// Guardamos
-			console.log("Guardando...");
+			editElement();
 			guardarElemento();
 		} else {
 			añadirElemento();
 		}
 	};
 	const onSubmitHandlerGenero = () => {
-		console.log(genero);
 		añadirElementoGenero();
 		modal.hide()
 		
@@ -113,14 +151,16 @@
 </script>
 
 <main>
-	
+	<SvelteToast  />
 	<div class="cabecera">
-		<p>Cabecera</p>
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<img src="https://mcgtn.org/storage/logos/library-logo.png" class="icono">
+		<div class="titulo"><h1>Bibliomanía</h1></div>
 	</div>
 	<div class="container">
-		<div class="formulario">
+		<div class="">
 			<!-- on:evento cuando se envie el formulario-->
-			<form on:submit|preventDefault={onSubmitHandler}>
+			<form on:submit|preventDefault={onSubmitHandler} class="formulario">
 				<!-- bind:value=variable cada cambio del input se sincorniza con la variable previamente declarada en el código -->
 				<label for="nombre">Nombre del libro:<br> </label>
 				<input
@@ -170,7 +210,7 @@
 						<option value='{g.genero}'>{g.genero}</option>
 					{/each}
 				</select>
-				<input type="button" on:click={() => modal.show()} value="" style="background-">
+				<input type="button" on:click={() => modal.show()} value="Agregar"class="agregar"  >
 				<Modal bind:this={modal}>
 					<form on:submit|preventDefault={onSubmitHandlerGenero}>
 						<h2>Añadir un nuevo género</h2>
@@ -183,11 +223,11 @@
 				<hr class="" />
 				<!-- Este boton debe de ser dual, si se añade o se modifica un elemento cambiara tanto el contenido como la función a la que va a llamar o a ejecutar...-->
 				{#if editar}
-					<button class="" value="Editar">
+					<button class="botonFormulario" value="Editar">
 						Editar
 					</button>
 				{:else}
-					<button class="" value="Añadir">
+					<button class="botonFormulario" value="Añadir">
 						Añadir
 					</button>
 				{/if}
@@ -212,19 +252,19 @@
 								/>
 							{/if}
 							<p class="">
-								Nombre: {p.Nombre}
+								<b>Nombre:</b> {p.Nombre}
 							</p>
 							<p class="">
-								Género: {p.Genero}
+								<b>Género:</b> {p.Genero}
 							</p>
 							<p class="">
-								Fecha Edición: {p.FechaEdicion}
+								<b>Fecha Edición:</b> {p.FechaEdicion}
 							</p>
 							<p class="">
-								Nº Págimas; {p.Npaginas}
+								<b>Nº Págimas:</b> {p.Npaginas}
 							</p>
 							<p class="">
-								Precio Venta: {p.Precio}
+								<b>Precio Venta:</b> {p.Precio}
 							</p>
 								<button class="editar" on:click={editarElemento(p)} value="Editar" name="Editar">Editar</button>
 								<button class="eliminar" on:click={eliminarElemento(p.id)} value="Eliminar" name="Eliminar">Eliminar</button>

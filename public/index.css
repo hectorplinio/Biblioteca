@@ -743,7 +743,7 @@ select {
 .container {
 	width: 100%;
 }
-@media (min-width: 640px) {
+/*@media (min-width: 640px) {
 
 	.container {
 		max-width: 640px;
@@ -772,8 +772,9 @@ select {
 	.container {
 		max-width: 1536px;
 	}
-}
+}*/
 .cabecera {
+	display: flex;
 	border-width: 1px;
 	--tw-border-opacity: 1;
 	border-color: rgba(99, 102, 241, var(--tw-border-opacity));
@@ -785,6 +786,15 @@ select {
 	padding-right: 1rem;
 	--tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.icono {
+	width: 3rem;
+}
+.titulo {
+	margin: auto;
+	font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	font-size: 3rem;
+	line-height: 1;
 }
 .container {
 	display: flex;
@@ -799,10 +809,16 @@ select {
 }
 .libros {
 	display: grid;
+	width: 100%;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .libro {
+	margin: 1.5rem;
+	--tw-bg-opacity: 1;
+	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 	padding: 2rem;
+	--tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .editar {
 	margin: 0.25rem;
@@ -817,4 +833,26 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
 	padding: 0.5rem;
+}
+.agregar {
+	height: 2rem;
+	width: 6rem;
+	border-radius: 0.25rem;
+	--tw-bg-opacity: 1;
+	background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
+}
+.botonFormulario {
+	height: 3rem;
+	width: 100%;
+	border-radius: 1rem;
+	--tw-bg-opacity: 1;
+	background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
+}
+.formulario {
+	border-bottom-right-radius: 1rem;
+	border-bottom-left-radius: 1rem;
+	--tw-bg-opacity: 1;
+	background-color: rgba(219, 234, 254, var(--tw-bg-opacity));
+	--tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
