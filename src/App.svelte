@@ -88,8 +88,6 @@
 		libro = Object.assign({}, p);
 		editar = true;
 		console.log("editalibro")
-		
-		
 	};
 
 	const eliminarElemento = async (id) => {
@@ -162,62 +160,68 @@
 			<!-- on:evento cuando se envie el formulario-->
 			<form on:submit|preventDefault={onSubmitHandler} class="formulario">
 				<!-- bind:value=variable cada cambio del input se sincorniza con la variable previamente declarada en el código -->
-				<label for="nombre">Nombre del libro:<br> </label>
+				<label for="nombre"><b>Nombre del libro:</b><br> </label>
 				<input
 					bind:value={libro.Nombre}
 					id="nombre"
 					type="text"
 					placeholder="Nombre del libro"
+					required
 				/><br>
-				<label for="descripcion">Autor del libro:<br> </label>
+				<label for="descripcion"><b>Autor del libro:</b><br> </label>
 				<input
 					bind:value={libro.Autor}
 					id="nombre"
 					type="text"
 					placeholder="Nombre del autor"
+					required
 				/><br>
-				<label for="imagen-url">Imagen del libro:<br> </label>
+				<label for="imagen-url"><b>Imagen del libro:</b><br> </label>
 				<input
 					bind:value={libro.Imagen}
 					type="url"
 					id="imagen-url"
 					placeholder=""
+					required
 				/><br>
-				<label for="Npaginas">Nº de páginas:<br> </label>
+				<label for="Npaginas"><b>Nº de páginas:</b><br> </label>
 				<input
 					bind:value={libro.Npaginas}
 					type="text"
 					id="Npaginas"
 					placeholder="Nº d páginas"
+					required
 				/><br>
-				<label for="FechaEdicion">Fecha de lanzamiento:<br> </label>
+				<label for="FechaEdicion"><b>Fecha de lanzamiento:</b><br> </label>
 				<input
 					bind:value={libro.FechaEdicion}
 					type="text"
 					id="FechaEdicion"
 					placeholder="Año de lanzamiento"
+					required
 				/><br>
-				<label for="Precio">Precio de venta:<br> </label>
+				<label for="Precio"><b>Precio de venta:</b><br> </label>
 				<input
 					bind:value={libro.Precio}
 					type="text"
 					id="Precio"
 					placeholder="Precio"
+					required
 				/><br>
-				<label for="Genero">Genero<br></label>
+				<label for="Genero"><b>Género</b><br></label>
 				<select bind:value={libro.Genero} id="Genero">
 					{#each generos as g}
 						<option value='{g.genero}'>{g.genero}</option>
 					{/each}
 				</select>
-				<input type="button" on:click={() => modal.show()} value="Agregar"class="agregar"  >
+				<input type="button" on:click={() => modal.show()} value="Add"class="agregar"  >
 				<Modal bind:this={modal}>
 					<form on:submit|preventDefault={onSubmitHandlerGenero}>
-						<h2>Añadir un nuevo género</h2>
+						<h2 class="titulo">Añadir un nuevo género</h2><br>
 						<input type="text" name="genero" id="genero" bind:value={genero}>
-						<button value="Añadir">Añadir</button>	
+						<button value="Añadir" class="agregar">Añadir</button>	
 					</form>
-					<br><button on:click={() => modal.hide()}>Close</button>
+					<br><button on:click={() => modal.hide()} class="eliminar">Close</button>
 					</Modal>
 				
 				<hr class="" />

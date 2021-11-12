@@ -743,37 +743,9 @@ select {
 .container {
 	width: 100%;
 }
-/*@media (min-width: 640px) {
 
-	.container {
-		max-width: 640px;
-	}
-}
-@media (min-width: 768px) {
-
-	.container {
-		max-width: 768px;
-	}
-}
-@media (min-width: 1024px) {
-
-	.container {
-		max-width: 1024px;
-	}
-}
-@media (min-width: 1280px) {
-
-	.container {
-		max-width: 1280px;
-	}
-}
-@media (min-width: 1536px) {
-
-	.container {
-		max-width: 1536px;
-	}
-}*/
 .cabecera {
+	font-size: 3em;
 	display: flex;
 	border-width: 1px;
 	--tw-border-opacity: 1;
@@ -788,7 +760,7 @@ select {
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .icono {
-	width: 3rem;
+	width: 4rem;
 }
 .titulo {
 	margin: auto;
@@ -813,6 +785,7 @@ select {
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .libro {
+	
 	margin: 1.5rem;
 	--tw-bg-opacity: 1;
 	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
@@ -821,38 +794,62 @@ select {
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .editar {
+	font-size: 1.25em;
 	margin: 0.25rem;
 	border-radius: 0.25rem;
 	--tw-bg-opacity: 1;
 	background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
 	padding: 0.5rem;
 }
+.editar:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(5, 150, 105, var(--tw-bg-opacity));
+}
 .eliminar {
+	font-size: 1.25em;
 	margin: 0.25rem;
 	border-radius: 0.25rem;
 	--tw-bg-opacity: 1;
-	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
+	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 	padding: 0.5rem;
 }
+.eliminar:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
+}
 .agregar {
+	font-size: 1.25em;
 	height: 2rem;
 	width: 6rem;
 	border-radius: 0.25rem;
 	--tw-bg-opacity: 1;
 	background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
 }
+.agregar:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
 .botonFormulario {
+	font-size: 1.25em;
 	height: 3rem;
 	width: 100%;
 	border-radius: 1rem;
 	--tw-bg-opacity: 1;
 	background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
 }
+.botonFormulario:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(167, 243, 208, var(--tw-bg-opacity));
+}
 .formulario {
 	border-bottom-right-radius: 1rem;
 	border-bottom-left-radius: 1rem;
 	--tw-bg-opacity: 1;
-	background-color: rgba(219, 234, 254, var(--tw-bg-opacity));
+	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 	--tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.titulo{
+	font-size: 1.25em;
+	text-align: center;
 }
